@@ -1,0 +1,303 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom base styles */
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Fix font rendering */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Custom component styles */
+@layer components {
+  /* Mobile-first responsive containers */
+  .container-responsive {
+    @apply w-full mx-auto px-4 sm:px-6 lg:px-8;
+    max-width: 100%;
+  }
+  
+  @screen sm {
+    .container-responsive {
+      max-width: 640px;
+    }
+  }
+  
+  @screen md {
+    .container-responsive {
+      max-width: 768px;
+    }
+  }
+  
+  @screen lg {
+    .container-responsive {
+      max-width: 1024px;
+    }
+  }
+  
+  @screen xl {
+    .container-responsive {
+      max-width: 1280px;
+    }
+  }
+  
+  /* Mobile-optimized form styles */
+  .form-mobile {
+    @apply space-y-4;
+  }
+  
+  .form-mobile .form-field {
+    @apply w-full;
+  }
+  
+  .form-mobile input,
+  .form-mobile textarea,
+  .form-mobile select {
+    @apply text-base; /* Prevents zoom on iOS */
+    min-height: 44px; /* Touch target size */
+  }
+  
+  /* Mobile-friendly button styles */
+  .btn-mobile {
+    @apply min-h-[44px] px-4 py-3 text-base;
+    touch-action: manipulation; /* Prevents double-tap zoom */
+  }
+  
+  /* Card responsive styles */
+  .card-responsive {
+    @apply rounded-lg border bg-card text-card-foreground shadow-sm;
+    @apply p-4 sm:p-6;
+  }
+  
+  /* Mobile navigation */
+  .nav-mobile {
+    @apply fixed bottom-0 left-0 right-0 z-50;
+    @apply bg-white border-t border-gray-200;
+    @apply grid grid-cols-4 py-2;
+    @apply lg:hidden;
+  }
+  
+  .nav-mobile-item {
+    @apply flex flex-col items-center justify-center py-2 px-1;
+    @apply text-xs text-gray-600 hover:text-exam-600;
+    @apply transition-colors duration-200;
+    min-height: 44px;
+  }
+  
+  .nav-mobile-item.active {
+    @apply text-exam-600;
+  }
+  
+  /* Responsive text sizes */
+  .text-responsive-xl {
+    @apply text-lg sm:text-xl md:text-2xl lg:text-3xl;
+  }
+  
+  .text-responsive-lg {
+    @apply text-base sm:text-lg md:text-xl lg:text-2xl;
+  }
+  
+  .text-responsive-base {
+    @apply text-sm sm:text-base md:text-lg;
+  }
+  
+  /* Responsive spacing */
+  .spacing-responsive {
+    @apply space-y-4 sm:space-y-6 lg:space-y-8;
+  }
+  
+  /* Mobile-optimized modals */
+  .modal-mobile {
+    @apply fixed inset-0 z-50;
+    @apply bg-black bg-opacity-50;
+    @apply flex items-end sm:items-center justify-center;
+    @apply p-0 sm:p-4;
+  }
+  
+  .modal-content-mobile {
+    @apply w-full max-w-lg;
+    @apply bg-white rounded-t-lg sm:rounded-lg;
+    @apply max-h-[90vh] overflow-y-auto;
+    @apply transform transition-transform duration-300;
+  }
+  
+  /* Exam interface mobile optimizations */
+  .exam-mobile {
+    @apply pb-20; /* Space for mobile navigation */
+  }
+  
+  .exam-question-mobile {
+    @apply p-4 sm:p-6;
+    @apply text-base sm:text-lg;
+    line-height: 1.6;
+  }
+  
+  .exam-options-mobile {
+    @apply space-y-3 sm:space-y-4;
+  }
+  
+  .exam-option-mobile {
+    @apply p-3 sm:p-4;
+    @apply border-2 rounded-lg;
+    @apply cursor-pointer transition-all;
+    @apply text-sm sm:text-base;
+    min-height: 44px;
+    @apply flex items-center;
+  }
+  
+  /* Touch-friendly interactions */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+    @apply flex items-center justify-center;
+  }
+  
+  /* Safe area handling for iOS */
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  /* Print styles */
+  @media print {
+    .no-print {
+      display: none !important;
+    }
+    
+    .print-break-before {
+      break-before: page;
+    }
+    
+    .print-break-after {
+      break-after: page;
+    }
+  }
+}
+
+/* Custom utilities */
+@layer utilities {
+  /* Screen reader only - accessible but visually hidden */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  
+  .focus\:not-sr-only:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: inherit;
+    margin: inherit;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+
+  /* Hide scrollbar */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Focus styles for accessibility */
+  .focus-visible {
+    @apply outline-none ring-2 ring-exam-500 ring-offset-2;
+  }
+  
+  /* Animation utilities */
+  .animate-in {
+    animation: slideIn 0.3s ease-out;
+  }
+  
+  .animate-out {
+    animation: slideOut 0.3s ease-in;
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideOut {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+  }
+  
+  /* Responsive visibility */
+  .mobile-only {
+    @apply block sm:hidden;
+  }
+  
+  .desktop-only {
+    @apply hidden sm:block;
+  }
+  
+  .tablet-up {
+    @apply hidden md:block;
+  }
+  
+  .desktop-up {
+    @apply hidden lg:block;
+  }
+}
+
+/* Dark mode support (for future implementation) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: 222.2% 84% 4.9%;
+    --foreground: 210% 40% 98%;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

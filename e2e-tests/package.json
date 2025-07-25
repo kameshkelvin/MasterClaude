@@ -1,0 +1,45 @@
+{
+  "name": "exam-system-e2e-tests",
+  "version": "1.0.0",
+  "description": "End-to-end tests for online exam system",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "test:ui": "playwright test --ui",
+    "test:report": "playwright show-report",
+    "test:codegen": "playwright codegen",
+    "install:browsers": "playwright install",
+    "test:user-flows": "playwright test --project=user-flows",
+    "test:admin-flows": "playwright test --project=admin-flows",
+    "test:parallel": "playwright test --workers=4",
+    "test:mobile": "playwright test --project=mobile",
+    "test:ci": "playwright test --reporter=github",
+    "test:e2e": "ts-node scripts/test-runner.ts",
+    "test:smoke": "ts-node scripts/test-runner.ts smoke",
+    "test:critical": "ts-node scripts/test-runner.ts critical",
+    "test:regression": "ts-node scripts/test-runner.ts regression",
+    "test:performance": "ts-node scripts/test-runner.ts performance",
+    "test:coverage": "ts-node scripts/test-runner.ts coverage",
+    "test:health": "ts-node scripts/test-runner.ts health",
+    "test:all": "ts-node scripts/test-runner.ts all"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.40.0",
+    "dotenv": "^16.3.1",
+    "faker": "^6.6.6"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.0",
+    "typescript": "^5.2.2",
+    "ts-node": "^10.9.1"
+  },
+  "keywords": [
+    "playwright",
+    "e2e",
+    "testing",
+    "exam-system"
+  ],
+  "author": "Exam System Team",
+  "license": "MIT"
+}
